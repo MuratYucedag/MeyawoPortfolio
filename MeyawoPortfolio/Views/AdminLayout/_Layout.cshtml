@@ -10,6 +10,7 @@
     <div class="wrapper d-flex align-items-stretch">
         @Html.Partial("~/Views/AdminLayout/_SidebarPartial.cshtml")
         <div id="content" class="p-4 p-md-5 pt-5">
+            @ViewBag.van
             @RenderBody()
         </div>
     </div>

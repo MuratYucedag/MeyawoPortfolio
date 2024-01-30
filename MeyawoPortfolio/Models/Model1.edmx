@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbMyPortfolioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbMyPortfolioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -24,6 +24,15 @@
           <Property Name="Header" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="ImageUrl" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TblAdminSidebar">
+          <Key>
+            <PropertyRef Name="AdminSideBarId" />
+          </Key>
+          <Property Name="AdminSideBarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SidebarTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="CoverImageUrl" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProfileImageUrl" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="TblCategory">
           <Key>
@@ -107,6 +116,7 @@
         <EntityContainer Name="DbMyPortfolioModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAbout" EntityType="Self.TblAbout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblAdminSidebar" EntityType="Self.TblAdminSidebar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblCategory" EntityType="Self.TblCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblContact" EntityType="Self.TblContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFuture" EntityType="Self.TblFuture" Schema="dbo" store:Type="Tables" />
@@ -119,8 +129,7 @@
             <End Role="TblProject" EntitySet="TblProject" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbMyPortfolioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -239,7 +248,17 @@
             <End Role="TblCategory" EntitySet="TblCategory" />
             <End Role="TblProject" EntitySet="TblProject" />
           </AssociationSet>
+          <EntitySet Name="TblAdminSidebar" EntityType="DbMyPortfolioModel.TblAdminSidebar" />
         </EntityContainer>
+        <EntityType Name="TblAdminSidebar">
+          <Key>
+            <PropertyRef Name="AdminSideBarId" />
+          </Key>
+          <Property Name="AdminSideBarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SidebarTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CoverImageUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileImageUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -339,6 +358,16 @@
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblAdminSidebar">
+            <EntityTypeMapping TypeName="DbMyPortfolioModel.TblAdminSidebar">
+              <MappingFragment StoreEntitySet="TblAdminSidebar">
+                <ScalarProperty Name="ProfileImageUrl" ColumnName="ProfileImageUrl" />
+                <ScalarProperty Name="CoverImageUrl" ColumnName="CoverImageUrl" />
+                <ScalarProperty Name="SidebarTitle" ColumnName="SidebarTitle" />
+                <ScalarProperty Name="AdminSideBarId" ColumnName="AdminSideBarId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
