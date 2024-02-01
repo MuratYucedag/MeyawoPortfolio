@@ -18,7 +18,7 @@
     @Html.TextBoxFor(x => x.ProjectUrl, new { @class = "table table-bordered" })
     <br />
     <label>Proje Kategorisi</label>
-    @Html.TextBoxFor(x => x.ProjectCategory, new { @class = "table table-bordered" })
+    @Html.DropDownListFor(x=>x.ProjectCategory,(List<SelectListItem>)ViewBag.v, new { @class = "table table-bordered" })
     <br />
     <label>Açıklama</label>
     <textarea rows="5" class="table table-bordered" name="Description"></textarea>
